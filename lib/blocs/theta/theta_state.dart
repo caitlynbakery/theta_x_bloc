@@ -3,8 +3,11 @@ part of 'theta_bloc.dart';
 @immutable
 class ThetaState extends Equatable {
   final String message;
+  final bool showImage;
+  final String lastImageUrl;
 
-  const ThetaState({required this.message});
+  const ThetaState(
+      {required this.message, this.showImage = false, this.lastImageUrl = ""});
 
   factory ThetaState.initial() => ThetaState(message: "Response from Camera");
 

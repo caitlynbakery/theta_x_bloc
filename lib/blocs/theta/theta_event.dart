@@ -13,3 +13,9 @@ class GetInfoEvent extends ThetaEvent {}
 class GetStateEvent extends ThetaEvent {}
 
 class PictureEvent extends ThetaEvent {}
+
+class ListFilesEvent extends ThetaEvent {}
+
+class GetLastUrlEvent extends ThetaEvent {}
+
+class ShowImageEvent extends ThetaEvent {}

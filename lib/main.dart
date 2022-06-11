@@ -39,10 +39,34 @@ class MyApp extends StatelessWidget {
                               context.read<ThetaBloc>().add(PictureEvent());
                             },
                             child: const Text("Take Picture")),
+                        TextButton(
+                            onPressed: () {
+                              context.read<ThetaBloc>().add(ListFilesEvent());
+                            },
+                            child: const Text("List Files")),
                       ],
                     ),
                   ),
-                  Expanded(flex: 4, child: Text(state.message)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      TextButton(
+                          onPressed: () {
+                            context.read<ThetaBloc>().add(GetLastUrlEvent());
+                          },
+                          child: const Text("Get Last Url")),
+                      TextButton(
+                          onPressed: () {
+                            context.read<ThetaBloc>().add(ShowImageEvent());
+                          },
+                          child: const Text("Show Image")),
+                    ],
+                  ),
+                  Expanded(
+                      flex: 4,
+                      child: state.showImage
+                          ? Image.network(state.lastImageUrl)
+                          : SelectableText(state.message)),
                 ],
               );
             },
