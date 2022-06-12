@@ -60,6 +60,11 @@ class MyApp extends StatelessWidget {
                             context.read<ThetaBloc>().add(ShowImageEvent());
                           },
                           child: const Text("Show Image")),
+                      TextButton(
+                          onPressed: () {
+                            context.read<ThetaBloc>().add(GetListImagesEvent());
+                          },
+                          child: const Text("Get List Images")),
                     ],
                   ),
                   Expanded(
