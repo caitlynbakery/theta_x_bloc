@@ -17,7 +17,11 @@ class ResponseWindow extends StatelessWidget {
           return Image.network(state.lastImageUrl);
         } else if (context.watch<ThetaBloc>().state.showList) {
           print('show list of images');
-          return Text('This will be image list');
+          return ListView.builder(
+              itemCount: state.urlList.length,
+              itemBuilder: ((context, index) {
+                return Image.network('${state.urlList[index]}?type=thumb');
+              }));
         } else if (context.watch<ThetaBloc>().state.showMessage) {
           return SelectableText(state.message);
         } else {
