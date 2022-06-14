@@ -4,10 +4,19 @@ part of 'theta_bloc.dart';
 class ThetaState extends Equatable {
   final String message;
   final bool showImage;
+  final bool showList;
+  final bool showMessage;
   final String lastImageUrl;
+  final List<String> urlList;
+  static const List<String> emptyList = [];
 
   const ThetaState(
-      {required this.message, this.showImage = false, this.lastImageUrl = ""});
+      {required this.message,
+      this.showMessage = true,
+      this.showImage = false,
+      this.showList = false,
+      this.lastImageUrl = "",
+      this.urlList = emptyList});
 
   factory ThetaState.initial() => ThetaState(message: "Response from Camera");
 

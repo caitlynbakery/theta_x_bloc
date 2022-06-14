@@ -21,3 +21,5 @@ class GetLastUrlEvent extends ThetaEvent {}
 class ShowImageEvent extends ThetaEvent {}
 
 class GetListImagesEvent extends ThetaEvent {}
+
+class ShowListImagesEvent extends ThetaEvent {}

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -113,8 +114,37 @@ class ThetaBloc extends Bloc<ThetaEvent, ThetaState> {
         filesList.add(thetaFiles['results']['entries'][i]['fileUrl']);
       }
       var filesResponse = filesList.toString();
-      emit(ThetaState(message: filesResponse));
+      emit(ThetaState(
+          message: filesResponse,
+          showMessage: true,
+          showImage: false,
+          showList: false));
       print(filesList);
+    });
+    on<ShowListImagesEvent>((event, emit) async {
+      var url = Uri.parse('http://192.168.1.1/osc/commands/execute');
+      var header = {'Content-Type': 'application/json;charset=utf-8'};
+      var bodyMap = {
+        'name': 'camera.listFiles',
+        'parameters': {
+          'fileType': 'image',
+          'startPosition': 0,
+          'entryCount': 10,
+          'maxThumbSize': 0
+        }
+      };
+      var bodyJson = jsonEncode(bodyMap);
+      var response = await http.post(url, headers: header, body: bodyJson);
+      var thetaFiles = jsonDecode(response.body);
+      List<String> filesList = [];
+      for (int i = 0; i < 10; i++) {
+        filesList.add(thetaFiles['results']['entries'][i]['fileUrl']);
+      }
+      emit(ThetaState(
+          message: filesList.toString(),
+          showList: true,
+          showImage: false,
+          urlList: filesList));
     });
   }
 }
