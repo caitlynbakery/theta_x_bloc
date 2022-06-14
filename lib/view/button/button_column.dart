@@ -46,13 +46,11 @@ class ButtonColumn extends StatelessWidget {
                   context.read<ThetaBloc>().add(GetLastUrlEvent());
                 },
                 child: const Text("Get Last Url")),
-            // TextButton(
-            //     onPressed: () {
-            //       context
-            //           .read<ThetaBloc>()
-            //           .add(GetListImagesEvent());
-            //     },
-            //     child: const Text("Get List Images")),
+            TextButton(
+                onPressed: () {
+                  context.read<ThetaBloc>().add(GetListImagesEvent());
+                },
+                child: const Text("Get List Images")),
           ],
         ),
         Row(

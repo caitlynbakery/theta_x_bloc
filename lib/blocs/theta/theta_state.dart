@@ -4,7 +4,6 @@ part of 'theta_bloc.dart';
 class ThetaState extends Equatable {
   final String message;
   final bool showImage;
-  final bool showList;
   final bool showMessage;
   final String lastImageUrl;
   final List<String> urlList;
@@ -14,7 +13,6 @@ class ThetaState extends Equatable {
       {required this.message,
       this.showMessage = true,
       this.showImage = false,
-      this.showList = false,
       this.lastImageUrl = "",
       this.urlList = emptyList});
 

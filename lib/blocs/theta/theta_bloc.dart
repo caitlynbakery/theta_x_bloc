@@ -42,7 +42,7 @@ class ThetaBloc extends Bloc<ThetaEvent, ThetaState> {
           'fileType': 'image',
           'startPosition': 0,
           'entryCount': 1,
-          'maxThumbSize': 640,
+          'maxThumbSize': 0,
           '_detail': true,
         }
       };
@@ -51,6 +51,7 @@ class ThetaBloc extends Bloc<ThetaEvent, ThetaState> {
       var encoder = JsonEncoder.withIndent('  ');
       var formattedResponse = encoder.convert(jsonDecode(response.body));
       emit(ThetaState(message: formattedResponse));
+      print(state.urlList.isEmpty);
     });
     on<GetLastUrlEvent>((event, emit) async {
       var url = Uri.parse('http://192.168.1.1/osc/commands/execute');
@@ -61,7 +62,7 @@ class ThetaBloc extends Bloc<ThetaEvent, ThetaState> {
           'fileType': 'image',
           'startPosition': 1,
           'entryCount': 2,
-          'maxThumbSize': 640,
+          'maxThumbSize': 0,
           '_detail': true,
         }
       };
@@ -69,7 +70,7 @@ class ThetaBloc extends Bloc<ThetaEvent, ThetaState> {
       var response = await http.post(url, headers: header, body: bodyJson);
       var thetaFiles = jsonDecode(response.body);
       var fileUrl = thetaFiles['results']['entries'][0]['fileUrl'];
-      print(response.body);
+      //print(response.body);
       emit(ThetaState(message: fileUrl));
     });
     on<ShowImageEvent>((event, emit) async {
@@ -114,12 +115,13 @@ class ThetaBloc extends Bloc<ThetaEvent, ThetaState> {
         filesList.add(thetaFiles['results']['entries'][i]['fileUrl']);
       }
       var filesResponse = filesList.toString();
+      if (state.urlList.isNotEmpty) {
+        state.urlList.clear();
+      }
+
       emit(ThetaState(
-          message: filesResponse,
-          showMessage: true,
-          showImage: false,
-          showList: false));
-      print(filesList);
+          message: filesResponse, showMessage: true, showImage: false));
+      print(state.urlList.isEmpty);
     });
     on<ShowListImagesEvent>((event, emit) async {
       var url = Uri.parse('http://192.168.1.1/osc/commands/execute');
@@ -140,11 +142,9 @@ class ThetaBloc extends Bloc<ThetaEvent, ThetaState> {
       for (int i = 0; i < 10; i++) {
         filesList.add(thetaFiles['results']['entries'][i]['fileUrl']);
       }
-      emit(ThetaState(
-          message: filesList.toString(),
-          showList: true,
-          showImage: false,
-          urlList: filesList));
+
+      emit(ThetaState(message: '', showImage: false, urlList: filesList));
+      print(state.urlList.isEmpty);
     });
   }
 }

@@ -12,10 +12,11 @@ class ResponseWindow extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ThetaBloc, ThetaState>(
       builder: (context, state) {
-        if (context.watch<ThetaBloc>().state.showImage) {
+        if (context.watch<ThetaBloc>().state.showImage &&
+            state.urlList.isEmpty) {
           print('show image');
           return Image.network(state.lastImageUrl);
-        } else if (context.watch<ThetaBloc>().state.showList) {
+        } else if (state.urlList.isNotEmpty) {
           print('show list of images');
           return ListView.builder(
               itemCount: state.urlList.length,
