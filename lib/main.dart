@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => ThetaBloc(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: SafeArea(
           child: Scaffold(body: BlocBuilder<ThetaBloc, ThetaState>(
             builder: (context, state) {
