@@ -60,7 +60,7 @@ class ThetaBloc extends Bloc<ThetaEvent, ThetaState> {
         'name': 'camera.listFiles',
         'parameters': {
           'fileType': 'image',
-          'startPosition': 1,
+          'startPosition': 0,
           'entryCount': 2,
           'maxThumbSize': 0,
           '_detail': true,
@@ -115,9 +115,9 @@ class ThetaBloc extends Bloc<ThetaEvent, ThetaState> {
         filesList.add(thetaFiles['results']['entries'][i]['fileUrl']);
       }
       var filesResponse = filesList.toString();
-      if (state.urlList.isNotEmpty) {
-        state.urlList.clear();
-      }
+      // if (state.urlList.isNotEmpty) {
+      //   state.urlList.clear();
+      // }
 
       emit(ThetaState(
           message: filesResponse, showMessage: true, showImage: false));

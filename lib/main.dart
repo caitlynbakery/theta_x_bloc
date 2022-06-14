@@ -23,6 +23,21 @@ class MyApp extends StatelessWidget {
             builder: (context, state) {
               return Column(
                 children: [
+                  Expanded(
+                    flex: 1,
+                    child: Row(
+                      children: [
+                        Image.asset('assets/images/stars.gif'),
+                        Text(
+                          'BUTTONS',
+                          style: TextStyle(
+                              fontFamily: 'BaksoSapi',
+                              fontSize: 50,
+                              color: Color.fromARGB(255, 86, 86, 86)),
+                        ),
+                      ],
+                    ),
+                  ),
                   Expanded(flex: 4, child: ButtonColumn()),
                   Expanded(flex: 4, child: ResponseWindow()),
                 ],

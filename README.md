@@ -26,7 +26,7 @@ var url = Uri.parse('http://192.168.1.1/osc/commands/execute');
 
 ## Workarounds
 
-When accessing the `listFiles` command on the THETA X, the `startPosition` parameter needs to be assigned a value in order for `entryCount` to work. The documentation does not list `startPosition` as a requirement for `entryCount`. 
+
 
 For the THETA X, the `thumbnail` does not appear unless the `_detail` is set to true. The thumbnail only works for a single file. If we need to get multiple thumbnails, then the `startPosition` needs to be changed to a different number and run multiple times. 
 

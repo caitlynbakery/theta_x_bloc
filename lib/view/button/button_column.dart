@@ -20,22 +20,46 @@ class ButtonColumn extends StatelessWidget {
                 onPressed: () {
                   context.read<ThetaBloc>().add(GetInfoEvent());
                 },
-                child: const Text("Info")),
+                child: const Text(
+                  "Info",
+                  style: TextStyle(
+                      fontFamily: 'BaksoSapi',
+                      fontSize: 20,
+                      color: Color.fromARGB(255, 252, 143, 179)),
+                )),
             TextButton(
                 onPressed: () {
                   context.read<ThetaBloc>().add(GetStateEvent());
                 },
-                child: const Text("State")),
+                child: const Text(
+                  "State",
+                  style: TextStyle(
+                      fontFamily: 'BaksoSapi',
+                      fontSize: 20,
+                      color: Color.fromARGB(255, 252, 143, 179)),
+                )),
             TextButton(
                 onPressed: () {
                   context.read<ThetaBloc>().add(PictureEvent());
                 },
-                child: const Text("Take Picture")),
+                child: const Text(
+                  "Take Pic",
+                  style: TextStyle(
+                      fontFamily: 'BaksoSapi',
+                      fontSize: 20,
+                      color: Color.fromARGB(255, 252, 143, 179)),
+                )),
             TextButton(
                 onPressed: () {
                   context.read<ThetaBloc>().add(ListFilesEvent());
                 },
-                child: const Text("List Files")),
+                child: const Text(
+                  "List Files",
+                  style: TextStyle(
+                      fontFamily: 'BaksoSapi',
+                      fontSize: 20,
+                      color: Color.fromARGB(255, 252, 143, 179)),
+                )),
           ],
         ),
         Row(
@@ -45,12 +69,24 @@ class ButtonColumn extends StatelessWidget {
                 onPressed: () {
                   context.read<ThetaBloc>().add(GetLastUrlEvent());
                 },
-                child: const Text("Get Last Url")),
+                child: const Text(
+                  "Get Last Url",
+                  style: TextStyle(
+                      fontFamily: 'BaksoSapi',
+                      fontSize: 20,
+                      color: Color.fromARGB(255, 172, 120, 227)),
+                )),
             TextButton(
                 onPressed: () {
                   context.read<ThetaBloc>().add(GetListImagesEvent());
                 },
-                child: const Text("Get List Images")),
+                child: const Text(
+                  "Get List Images",
+                  style: TextStyle(
+                      fontFamily: 'BaksoSapi',
+                      fontSize: 20,
+                      color: Color.fromARGB(255, 172, 120, 227)),
+                )),
           ],
         ),
         Row(
@@ -60,12 +96,24 @@ class ButtonColumn extends StatelessWidget {
                 onPressed: () {
                   context.read<ThetaBloc>().add(ShowImageEvent());
                 },
-                child: const Text("Show Image")),
+                child: const Text(
+                  "Show Image",
+                  style: TextStyle(
+                      fontFamily: 'BaksoSapi',
+                      fontSize: 20,
+                      color: Color.fromARGB(255, 87, 194, 137)),
+                )),
             TextButton(
                 onPressed: () {
                   context.read<ThetaBloc>().add(ShowListImagesEvent());
                 },
-                child: const Text("Show List Images")),
+                child: const Text(
+                  "Show List Images",
+                  style: TextStyle(
+                      fontFamily: 'BaksoSapi',
+                      fontSize: 20,
+                      color: Color.fromARGB(255, 87, 194, 137)),
+                )),
           ],
         ),
       ],
