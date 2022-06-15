@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:ffi';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
@@ -61,7 +59,7 @@ class ThetaBloc extends Bloc<ThetaEvent, ThetaState> {
         'parameters': {
           'fileType': 'image',
           'startPosition': 0,
-          'entryCount': 2,
+          'entryCount': 1,
           'maxThumbSize': 0,
           '_detail': true,
         }
@@ -90,7 +88,7 @@ class ThetaBloc extends Bloc<ThetaEvent, ThetaState> {
       var thetaFiles = jsonDecode(response.body);
 
       var fileUrl = thetaFiles['results']['entries'][0]['fileUrl'];
-      fileUrl = fileUrl + "?type=thumb";
+
       emit(ThetaState(
           message: 'url here', showImage: true, lastImageUrl: fileUrl));
     });
@@ -111,13 +109,14 @@ class ThetaBloc extends Bloc<ThetaEvent, ThetaState> {
       var response = await http.post(url, headers: header, body: bodyJson);
       var thetaFiles = jsonDecode(response.body);
       var filesList = [];
+      // int index = 10;
+      // if (thetaFiles['results']['entries'].length < 10) {
+      //   index = thetaFiles['results']['entries'].length;
+      // }
       for (int i = 0; i < 10; i++) {
         filesList.add(thetaFiles['results']['entries'][i]['fileUrl']);
       }
       var filesResponse = filesList.toString();
-      // if (state.urlList.isNotEmpty) {
-      //   state.urlList.clear();
-      // }
 
       emit(ThetaState(
           message: filesResponse, showMessage: true, showImage: false));
@@ -139,6 +138,10 @@ class ThetaBloc extends Bloc<ThetaEvent, ThetaState> {
       var response = await http.post(url, headers: header, body: bodyJson);
       var thetaFiles = jsonDecode(response.body);
       List<String> filesList = [];
+      // int index = 10;
+      // if (thetaFiles['results']['entries'].length < 10) {
+      //   index = thetaFiles['results']['entries'].length;
+      // }
       for (int i = 0; i < 10; i++) {
         filesList.add(thetaFiles['results']['entries'][i]['fileUrl']);
       }
@@ -146,5 +149,137 @@ class ThetaBloc extends Bloc<ThetaEvent, ThetaState> {
       emit(ThetaState(message: '', showImage: false, urlList: filesList));
       print(state.urlList.isEmpty);
     });
+    on<TurnOffLCDEvent>((event, emit) async {
+      var url = Uri.parse('http://192.168.1.1/osc/commands/execute');
+      var header = {'Content-Type': 'application/json;charset=utf-8'};
+      var bodyMap = {
+        'name': 'camera.setOptions',
+        'parameters': {
+          'options': {'_cameraControlSource': 'app'}
+        }
+      };
+      var bodyJson = jsonEncode(bodyMap);
+      var response = await http.post(url, headers: header, body: bodyJson);
+      emit(ThetaState(message: response.body));
+    });
+    on<GetOptionsEvent>((event, emit) async {
+      var url = Uri.parse('http://192.168.1.1/osc/commands/execute');
+      var header = {'Content-Type': 'application/json;charset=utf-8'};
+      var bodyMap = {
+        'name': 'camera.getOptions',
+        'parameters': {
+          'optionNames': ['_cameraControlSource']
+        }
+      };
+      var bodyJson = jsonEncode(bodyMap);
+      var response = await http.post(url, headers: header, body: bodyJson);
+      emit(ThetaState(message: response.body));
+    });
+    on<SetVideoModeEvent>((event, emit) async {
+      var url = Uri.parse('http://192.168.1.1/osc/commands/execute');
+      var header = {'Content-Type': 'application/json;charset=utf-8'};
+      var bodyMap = {
+        'name': 'camera.setOptions',
+        'parameters': {
+          'options': {'captureMode': 'video'}
+        }
+      };
+      var bodyJson = jsonEncode(bodyMap);
+      var response = await http.post(url, headers: header, body: bodyJson);
+      emit(ThetaState(message: response.body));
+    });
+    on<SetImageModeEvent>((event, emit) async {
+      var url = Uri.parse('http://192.168.1.1/osc/commands/execute');
+      var header = {'Content-Type': 'application/json;charset=utf-8'};
+      var bodyMap = {
+        'name': 'camera.setOptions',
+        'parameters': {
+          'options': {'captureMode': 'image'}
+        }
+      };
+      var bodyJson = jsonEncode(bodyMap);
+      var response = await http.post(url, headers: header, body: bodyJson);
+      emit(ThetaState(message: response.body));
+    });
+    on<SetVideo2FPSEvent>(((event, emit) async {
+      var url = Uri.parse('http://192.168.1.1/osc/commands/execute');
+      var header = {'Content-Type': 'application/json;charset=utf-8'};
+      var bodyMap = {
+        'name': 'camera.setOptions',
+        'parameters': {
+          'options': {
+            'fileFormat': {
+              'type': 'mp4',
+              'width': 7680,
+              'height': 3840,
+              '_codec': 'H.264/MPEG-4 AVC',
+              '_frameRate': 2
+            }
+          }
+        }
+      };
+      var bodyJson = jsonEncode(bodyMap);
+      var response = await http.post(url, headers: header, body: bodyJson);
+      emit(ThetaState(message: response.body));
+    }));
+    on<SetVideo5FPSEvent>(((event, emit) async {
+      var url = Uri.parse('http://192.168.1.1/osc/commands/execute');
+      var header = {'Content-Type': 'application/json;charset=utf-8'};
+      var bodyMap = {
+        'name': 'camera.setOptions',
+        'parameters': {
+          'options': {
+            'fileFormat': {
+              'type': 'mp4',
+              'width': 7680,
+              'height': 3840,
+              '_codec': 'H.264/MPEG-4 AVC',
+              '_frameRate': 5
+            }
+          }
+        }
+      };
+      var bodyJson = jsonEncode(bodyMap);
+      var response = await http.post(url, headers: header, body: bodyJson);
+      emit(ThetaState(message: response.body));
+    }));
+    on<SetImage11KEvent>(((event, emit) async {
+      var url = Uri.parse('http://192.168.1.1/osc/commands/execute');
+      var header = {'Content-Type': 'application/json;charset=utf-8'};
+      var bodyMap = {
+        'name': 'camera.setOptions',
+        'parameters': {
+          'options': {
+            'fileFormat': {
+              'type': 'jpeg',
+              'width': 11008,
+              'height': 5504,
+            }
+          }
+        }
+      };
+      var bodyJson = jsonEncode(bodyMap);
+      var response = await http.post(url, headers: header, body: bodyJson);
+      emit(ThetaState(message: response.body));
+    }));
+    on<SetImage5KEvent>(((event, emit) async {
+      var url = Uri.parse('http://192.168.1.1/osc/commands/execute');
+      var header = {'Content-Type': 'application/json;charset=utf-8'};
+      var bodyMap = {
+        'name': 'camera.setOptions',
+        'parameters': {
+          'options': {
+            'fileFormat': {
+              'type': 'jpeg',
+              'width': 5504,
+              'height': 2752,
+            }
+          }
+        }
+      };
+      var bodyJson = jsonEncode(bodyMap);
+      var response = await http.post(url, headers: header, body: bodyJson);
+      emit(ThetaState(message: response.body));
+    }));
   }
 }

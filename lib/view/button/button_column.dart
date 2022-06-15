@@ -120,17 +120,28 @@ class ButtonColumn extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            IconButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: ((context) => VideoSettings())));
-              },
-              icon: Icon(
-                Icons.video_camera_front,
-                color: Colors.black54,
-              ),
-              iconSize: 40,
-            )
+            TextButton(
+                onPressed: () {
+                  context.read<ThetaBloc>().add(TurnOffLCDEvent());
+                },
+                child: Text(
+                  "Turn Off LCD",
+                  style: TextStyle(
+                      fontFamily: 'BaksoSapi',
+                      fontSize: 20,
+                      color: Color.fromARGB(255, 87, 128, 194)),
+                )),
+            TextButton(
+                onPressed: () {
+                  context.read<ThetaBloc>().add(GetOptionsEvent());
+                },
+                child: Text(
+                  'Get options',
+                  style: TextStyle(
+                      fontFamily: 'BaksoSapi',
+                      fontSize: 20,
+                      color: Color.fromARGB(255, 87, 128, 194)),
+                ))
           ],
         )
       ],

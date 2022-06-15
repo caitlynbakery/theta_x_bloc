@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:panorama/panorama.dart';
 
 class FullImageScreen extends StatelessWidget {
@@ -9,6 +7,9 @@ class FullImageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(), body: Panorama(child: Image.network(fileUrl)));
+        appBar: AppBar(
+          backgroundColor: Colors.black54,
+        ),
+        body: Panorama(child: Image.network(fileUrl)));
   }
 }

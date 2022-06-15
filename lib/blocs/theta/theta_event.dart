@@ -23,3 +23,19 @@ class ShowImageEvent extends ThetaEvent {}
 class GetListImagesEvent extends ThetaEvent {}
 
 class ShowListImagesEvent extends ThetaEvent {}
+
+class TurnOffLCDEvent extends ThetaEvent {}
+
+class GetOptionsEvent extends ThetaEvent {}
+
+class SetVideoModeEvent extends ThetaEvent {}
+
+class SetImageModeEvent extends ThetaEvent {}
+
+class SetVideo5FPSEvent extends ThetaEvent {}
+
+class SetVideo2FPSEvent extends ThetaEvent {}
+
+class SetImage5KEvent extends ThetaEvent {}
+
+class SetImage11KEvent extends ThetaEvent {}

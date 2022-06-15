@@ -15,7 +15,15 @@ class ResponseWindow extends StatelessWidget {
       builder: (context, state) {
         if (context.watch<ThetaBloc>().state.showImage) {
           print('show image');
-          return Image.network(state.lastImageUrl);
+          return InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            FullImageScreen(fileUrl: state.lastImageUrl)));
+              },
+              child: Image.network('${state.lastImageUrl}?type=thumb'));
         } else if (state.urlList.isNotEmpty) {
           print('show list of images');
 
