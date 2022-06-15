@@ -95,6 +95,7 @@ The Shooting Settings screen on the application has several buttons that can swi
 * [fileFormat](https://api.ricoh/docs/theta-web-api-v2.1/options/file_format/)
 
 ![shooting settings](docs/images/shooting.gif)
+<img src="docs/images/shooting_settings.png" width=35%>
 
 We can change the `fileFormat` inside of the State with these parameters:
 
