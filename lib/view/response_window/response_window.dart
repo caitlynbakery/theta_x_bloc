@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:theta_bloc_app/view/screens/full_image_screen.dart';
 
 import '../../blocs/theta/theta_bloc.dart';
 
@@ -17,10 +18,20 @@ class ResponseWindow extends StatelessWidget {
           return Image.network(state.lastImageUrl);
         } else if (state.urlList.isNotEmpty) {
           print('show list of images');
+
           return ListView.builder(
               itemCount: state.urlList.length,
               itemBuilder: ((context, index) {
-                return Image.network('${state.urlList[index]}?type=thumb');
+                var fileUrl = state.urlList[index];
+                return InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  FullImageScreen(fileUrl: fileUrl)));
+                    },
+                    child: Image.network('${state.urlList[index]}?type=thumb'));
               }));
         } else if (context.watch<ThetaBloc>().state.showMessage) {
           return SelectableText(state.message);

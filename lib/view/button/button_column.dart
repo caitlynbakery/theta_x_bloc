@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:theta_bloc_app/view/screens/video_settings.dart';
 
 import '../../blocs/theta/theta_bloc.dart';
 
@@ -116,6 +117,22 @@ class ButtonColumn extends StatelessWidget {
                 )),
           ],
         ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            IconButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: ((context) => VideoSettings())));
+              },
+              icon: Icon(
+                Icons.video_camera_front,
+                color: Colors.black54,
+              ),
+              iconSize: 40,
+            )
+          ],
+        )
       ],
     );
   }
