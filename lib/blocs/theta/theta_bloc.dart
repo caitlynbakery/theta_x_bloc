@@ -281,5 +281,21 @@ class ThetaBloc extends Bloc<ThetaEvent, ThetaState> {
       var response = await http.post(url, headers: header, body: bodyJson);
       emit(ThetaState(message: response.body));
     }));
+    on<StartCaptureEvent>((event, emit) async {
+      var url = Uri.parse('http://192.168.1.1/osc/commands/execute');
+      var header = {'Content-Type': 'application/json;charset=utf-8'};
+      var bodyMap = {'name': 'camera.startCapture'};
+      var bodyJson = jsonEncode(bodyMap);
+      var response = await http.post(url, headers: header, body: bodyJson);
+      emit(ThetaState(message: response.body));
+    });
+    on<StopCaptureEvent>((event, emit) async {
+      var url = Uri.parse('http://192.168.1.1/osc/commands/execute');
+      var header = {'Content-Type': 'application/json;charset=utf-8'};
+      var bodyMap = {'name': 'camera.stopCapture'};
+      var bodyJson = jsonEncode(bodyMap);
+      var response = await http.post(url, headers: header, body: bodyJson);
+      emit(ThetaState(message: response.body));
+    });
   }
 }

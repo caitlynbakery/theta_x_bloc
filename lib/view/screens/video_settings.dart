@@ -30,24 +30,61 @@ class VideoSettings extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  IconButton(
+                  Expanded(
+                    flex: 2,
+                    child: IconButton(
+                        onPressed: () {
+                          context.read<ThetaBloc>().add(SetVideoModeEvent());
+                        },
+                        icon: Icon(
+                          Icons.videocam,
+                          size: 40,
+                          color: Color.fromARGB(255, 172, 120, 227),
+                        )),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: IconButton(
+                        onPressed: () {
+                          context.read<ThetaBloc>().add(SetImageModeEvent());
+                        },
+                        icon: Icon(
+                          Icons.camera_alt,
+                          size: 40,
+                          color: Color.fromARGB(255, 252, 143, 179),
+                        )),
+                  )
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: TextButton(
+                        onPressed: () {
+                          context.read<ThetaBloc>().add(StartCaptureEvent());
+                        },
+                        child: Text(
+                          "Start",
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 172, 120, 227)),
+                        )),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: TextButton(
                       onPressed: () {
-                        context.read<ThetaBloc>().add(SetVideoModeEvent());
+                        context.read<ThetaBloc>().add(StopCaptureEvent());
                       },
-                      icon: Icon(
-                        Icons.videocam,
-                        size: 40,
-                        color: Color.fromARGB(255, 172, 120, 227),
-                      )),
-                  IconButton(
-                      onPressed: () {
-                        context.read<ThetaBloc>().add(SetImageModeEvent());
-                      },
-                      icon: Icon(
-                        Icons.camera_alt,
-                        size: 40,
-                        color: Color.fromARGB(255, 252, 143, 179),
-                      ))
+                      child: Text(
+                        "Stop",
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 172, 120, 227)),
+                      ),
+                    ),
+                  ),
+                  Expanded(flex: 2, child: Container())
                 ],
               ),
               Row(
@@ -60,6 +97,8 @@ class VideoSettings extends StatelessWidget {
                       child: Text(
                         "8K 2fps",
                         style: TextStyle(
+                            fontFamily: 'RainyHearts',
+                            fontSize: 30,
                             color: Color.fromARGB(255, 172, 120, 227)),
                       )),
                   TextButton(
@@ -69,6 +108,8 @@ class VideoSettings extends StatelessWidget {
                       child: Text(
                         "8K 5fps",
                         style: TextStyle(
+                            fontFamily: 'RainyHearts',
+                            fontSize: 30,
                             color: Color.fromARGB(255, 172, 120, 227)),
                       )),
                   TextButton(
@@ -78,6 +119,8 @@ class VideoSettings extends StatelessWidget {
                       child: Text(
                         "5.5K",
                         style: TextStyle(
+                            fontFamily: 'RainyHearts',
+                            fontSize: 30,
                             color: Color.fromARGB(255, 252, 143, 179)),
                       )),
                   TextButton(
@@ -87,10 +130,12 @@ class VideoSettings extends StatelessWidget {
                       child: Text(
                         "11K",
                         style: TextStyle(
+                            fontFamily: 'RainyHearts',
+                            fontSize: 30,
                             color: Color.fromARGB(255, 252, 143, 179)),
                       ))
                 ],
-              )
+              ),
             ],
           ),
         );

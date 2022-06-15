@@ -39,3 +39,7 @@ class SetVideo2FPSEvent extends ThetaEvent {}
 class SetImage5KEvent extends ThetaEvent {}
 
 class SetImage11KEvent extends ThetaEvent {}
+
+class StartCaptureEvent extends ThetaEvent {}
+
+class StopCaptureEvent extends ThetaEvent {}
